@@ -61,6 +61,34 @@ namespace HigherConsole {
     /// </summary>
     public static string ReadPasswordLine() => ReadPasswordLine('*');
 
+    /// <summary>
+    /// Universal read
+    /// </summary>
+    /// <param name="title">Title, if any</param>
+    /// <param name="validator">Validator</param>
+    /// <returns>Value read</returns>
+    /// <example>
+    /// <code>
+    /// int count = ConsoleReader.Read("Count", s => int.TryParse(s, out int i) ? (i, null) : (0, "Syntax error"));
+    /// </code>
+    /// </example>
+    public static T Read<T>(string title, Func<string, (T value, string error)> validator) {
+      if (validator is null)
+        throw new ArgumentNullException(nameof(validator));
+
+      while (true) {
+        if (!string.IsNullOrWhiteSpace(title))
+          Console.WriteLine(title);
+
+        var result = validator(Console.ReadLine());
+
+        if (string.IsNullOrWhiteSpace(result.error))
+          return result.value;
+
+        Console.WriteLine(result.error);
+      }
+    }
+
     #endregion Public
   }
 
