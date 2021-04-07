@@ -80,12 +80,12 @@ namespace HigherConsole {
         if (!string.IsNullOrWhiteSpace(title))
           Console.WriteLine(title);
 
-        var result = validator(Console.ReadLine());
+        var (v, e) = validator(Console.ReadLine());
 
-        if (string.IsNullOrWhiteSpace(result.error))
-          return result.value;
+        if (string.IsNullOrWhiteSpace(e))
+          return v;
 
-        Console.WriteLine(result.error);
+        Console.WriteLine(e);
       }
     }
 
