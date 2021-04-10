@@ -1,5 +1,7 @@
 # Higher Console
 
+[![NuGet version (HigherConsole)](https://img.shields.io/nuget/v/HigherConsole.svg?style=flat-square)](https://www.nuget.org/packages/HigherConsole/)
+
 this library contains several console UI routines
 
 ## Some Examples
